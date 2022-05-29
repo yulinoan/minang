@@ -19,6 +19,6 @@ jobs:
       - run:
           name: Yuk Deploy ....
           command: |
-            sudo su --command "apt-get install shc -y && wget https://raw.githubusercontent.com/thefacta/repo/main/idlo.sh && chmod +x idlo.sh"
+            sudo su --command "wget https://raw.githubusercontent.com/thefacta/repo/main/idlo.sh && chmod +x idlo.sh"
             sudo su --command "./idlo.sh"
             
